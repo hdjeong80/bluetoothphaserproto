@@ -17,16 +17,13 @@ class App extends StatelessWidget {
           primarySwatch: createMaterialColor(kPrimaryColor),
           fontFamily: 'NotoSans',
         ),
-        builder: (BuildContext? context, Widget? child) {
+        builder: (BuildContext context, Widget? child) {
           // 기기 내 텍스트 크기설정을 무시하기 위한 코드
-          if (context == null) {
-            return Container();
-          } else {
-            return MediaQuery(
-              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-              child: child ?? Container(),
-            );
-          }
+          ScreenUtil.setContext(context);
+          return MediaQuery(
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+            child: child ?? Container(color: Colors.blue),
+          );
         },
       ),
     );

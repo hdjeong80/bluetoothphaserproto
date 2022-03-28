@@ -44,6 +44,9 @@ class BluetoothSearchClassic {
 
   void disposeDiscovery() {
     _streamSubscription?.cancel();
+    streamController = null;
+    resultsStream = null;
+    results.clear();
   }
 
   Future<String?> connect(BluetoothDiscoveryResult selectedDevice) async {
@@ -64,7 +67,7 @@ class BluetoothSearchClassic {
       // print(
       //     'Bonding with ${device.address} has ${bonded ? 'succed' : 'failed'}.');
       connection = await BluetoothConnection.toAddress(address);
-      
+
       print('Connected to the device');
 
       connection!.input?.listen((Uint8List data) {

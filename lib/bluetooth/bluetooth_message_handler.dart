@@ -52,17 +52,20 @@ class BluetoothMessageHandler {
 
   _handleBuffer() {
     AppData appData = Get.find();
-    if (_buffer.contains('ECHO::VEACHDA::001')) {
-      TagModel? tag;
-      try {
-        tag = appData.tags.firstWhere((element) => element.number == 01);
-      } catch (e) {
-        tag = TagModel(id: '01', number: 01);
-        appData.tags.add(tag);
+    for (int i = 0; i < 99; i++) {
+      final idString = i.toString().padLeft(2, '0');
+      if (_buffer.contains('ECHO::VEACHDA::0$idString')) {
+        TagModel? tag;
+        try {
+          tag = appData.tags.firstWhere((element) => element.number == 01);
+        } catch (e) {
+          tag = TagModel(id: idString, number: i);
+          appData.tags.add(tag);
+        }
+        // tag.tagState = TagState.idle;
+        _buffer.replaceFirstMapped('ECHO::VEACHDA::0$idString', (match) => '');
+        appData.update();
       }
-      // tag.tagState = TagState.idle;
-      _buffer.replaceFirstMapped('ECHO::VEACHDA::001', (match) => '');
-      appData.update();
     }
   }
 }

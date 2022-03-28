@@ -17,7 +17,7 @@ class _LoginScreenBluetoothState extends State<LoginScreenBluetooth> {
   @override
   void initState() {
     // TODO: implement initState
-    BluetoothSearch().disconnectAll();
+    // BluetoothSearch().disconnectAll();
     super.initState();
   }
 

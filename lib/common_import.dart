@@ -13,5 +13,3 @@ export 'package:bluetoothphaser/sections/setting_controller_btn_zone.dart';
 export 'package:bluetoothphaser/screens/login_screen_bluetooth.dart';
 
 export 'package:flutter_neumorphic/flutter_neumorphic.dart';
-export 'package:permission_handler/permission_handler.dart';
-export 'package:flutter_blue/flutter_blue.dart';
